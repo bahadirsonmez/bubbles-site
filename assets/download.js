@@ -1,0 +1,1 @@
+(()=>{const url='https://apps.apple.com/app/id6738212806';const button=document.querySelector('#copy-link');const status=document.querySelector('#copy-status');if(!button)return;button.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(url);status.textContent='App Store link copied.';}catch{status.textContent='Copy this link: '+url;}});})();
