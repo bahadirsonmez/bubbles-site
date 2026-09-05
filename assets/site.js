@@ -14,7 +14,9 @@ document.querySelectorAll('[data-carousel]').forEach((carousel)=>{
   let resumeAt=0;
   let previousTime=0;
   let dragging=false;
+  let gesture=null;
   let startX=0;
+  let startY=0;
   let startScroll=0;
 
   const pause=(delay=3500)=>{resumeAt=performance.now()+delay;};
@@ -26,21 +28,33 @@ document.querySelectorAll('[data-carousel]').forEach((carousel)=>{
   };
 
   track.addEventListener('pointerdown',(event)=>{
-    dragging=true;startX=event.clientX;startScroll=track.scrollLeft;
+    dragging=true;gesture=null;startX=event.clientX;startY=event.clientY;startScroll=track.scrollLeft;
     if(event.pointerType==='mouse')track.setPointerCapture(event.pointerId);
     pause(10000);
   });
   track.addEventListener('pointermove',(event)=>{
-    if(dragging&&event.pointerType==='mouse')track.scrollLeft=startScroll-(event.clientX-startX);
+    if(!dragging)return;
+    const deltaX=event.clientX-startX;
+    const deltaY=event.clientY-startY;
+    if(!gesture&&Math.max(Math.abs(deltaX),Math.abs(deltaY))>6){
+      gesture=Math.abs(deltaX)>Math.abs(deltaY)?'horizontal':'vertical';
+    }
+    if(gesture==='horizontal'){
+      event.preventDefault();
+      track.scrollLeft=startScroll-deltaX;
+    }
   });
-  const finishDrag=()=>{if(dragging){dragging=false;normalize();pause();}};
+  const finishDrag=()=>{
+    if(!dragging)return;
+    dragging=false;gesture=null;normalize();pause();
+  };
   track.addEventListener('pointerup',finishDrag);
   track.addEventListener('pointercancel',finishDrag);
   track.addEventListener('wheel',()=>pause(),{passive:true});
   track.addEventListener('keydown',()=>pause());
 
   if(reducedMotion)return;
-  const speed=Number(carousel.dataset.speed)||24;
+  const speed=(Number(carousel.dataset.speed)||24)*1.45;
   const animate=(time)=>{
     if(previousTime&&time>=resumeAt&&!dragging&&!document.hidden){
       track.scrollLeft+=speed*(time-previousTime)/1000;
