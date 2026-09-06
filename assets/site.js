@@ -54,7 +54,7 @@ document.querySelectorAll('[data-carousel]').forEach((carousel)=>{
   track.addEventListener('keydown',()=>pause());
 
   if(reducedMotion)return;
-  const speed=(Number(carousel.dataset.speed)||24)*1.45;
+  const speed=(Number(carousel.dataset.speed)||24)*1.9;
   const animate=(time)=>{
     if(previousTime&&time>=resumeAt&&!dragging&&!document.hidden){
       track.scrollLeft-=speed*(time-previousTime)/1000;
