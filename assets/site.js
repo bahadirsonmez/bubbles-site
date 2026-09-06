@@ -24,7 +24,7 @@ document.querySelectorAll('[data-carousel]').forEach((carousel)=>{
     const loopWidth=original.getBoundingClientRect().width;
     if(!loopWidth)return;
     while(track.scrollLeft>=loopWidth)track.scrollLeft-=loopWidth;
-    while(track.scrollLeft<0)track.scrollLeft+=loopWidth;
+    while(track.scrollLeft<=0)track.scrollLeft+=loopWidth;
   };
 
   track.addEventListener('pointerdown',(event)=>{
@@ -57,7 +57,8 @@ document.querySelectorAll('[data-carousel]').forEach((carousel)=>{
   const speed=(Number(carousel.dataset.speed)||24)*1.9;
   const animate=(time)=>{
     if(previousTime&&time>=resumeAt&&!dragging&&!document.hidden){
-      track.scrollLeft+=speed*(time-previousTime)/1000;
+      // Screenshot sets stay ordered 1 → n; autoplay travels toward item 1.
+      track.scrollLeft-=speed*(time-previousTime)/1000;
       normalize();
     }
     previousTime=time;
