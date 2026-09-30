@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Visual Task Manager for iPhone &amp; iPad — Bubbles</title>
 <meta name="description" content="Make priorities easier to see with growing task bubbles, routines, Pomodoro focus, widgets, and Live Activities on iPhone and iPad.">
-<meta name="theme-color" content="#fff7fc">
+<meta name="theme-color" content="#1b2c91">
 <link rel="canonical" href="https://bubbles.bahadirsonmez.com/visual-task-manager/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Bubbles">
@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Growing task bubbles, routines, Pomodoro, widgets, and Live Activities.">
 <meta name="twitter:image" content="https://bubbles.bahadirsonmez.com/assets/images/og-image.png">
 <link rel="icon" href="/assets/images/favicon.png">
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..800,100,0&family=Inter:wght@400;600;700&display=swap"><link rel="stylesheet" href="/assets/site.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does Bubbles show task urgency?","acceptedAnswer":{"@type":"Answer","text":"Tasks grow visually with time and priority, helping the items that need attention stand out."}},{"@type":"Question","name":"Does Bubbles include a focus timer?","acceptedAnswer":{"@type":"Answer","text":"Yes. Bubbles includes a Pomodoro timer and supports Live Activities to keep the current focus session visible."}},{"@type":"Question","name":"Can Bubbles handle repeating tasks?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can build routines for repeatable work and follow streaks and statistics over time."}}]}</script>
 </head>
 <body>
@@ -28,7 +28,7 @@
 <img src="/assets/images/app-icon.png" width="44" height="44" alt="">
 <strong>Bubbles</strong>
 </a>
-<nav>
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle><span class="sr-only">Toggle navigation</span><span></span><span></span></button><nav id="site-nav" aria-label="Primary">
 <a href="#method">Method</a>
 <a href="#faq">FAQ</a>
 <a class="pill" href="https://apps.apple.com/app/id6738212806">Get Bubbles</a>
@@ -142,6 +142,7 @@
 </nav>
 </div>
 </footer>
+<script src="/assets/site.js" defer></script>
 <!-- Cloudflare Web Analytics -->
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"766d37d0b2114e12b7608eb0a9e5e067"}'>
 </script>
